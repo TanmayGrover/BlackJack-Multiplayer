@@ -12,7 +12,7 @@ import Foundation
 class Dealer{
     var deck = [Int]()
     
-    
+    //returns dealer card
     func dealCard () {
         for index in 0...3{
             for item in 1...13{
@@ -40,7 +40,7 @@ class Dealer{
             
         }
     }
-    
+    //returns first card for player
     func getCard1Player()-> (Int) {
         var j :Int
         
@@ -48,13 +48,14 @@ class Dealer{
         j =  Int(arc4random_uniform(UInt32(deck.count-1)) + 1)
                //println(j)
         var card  = deck[j]
+        println(" card is \(card)")
         
         deck.removeAtIndex(j)
         return (card)
         
         
     }
-    
+    //returns second card for player
     func getCard2Player()-> Int{
         var k:Int
         k =  Int(arc4random_uniform((deck.count-1)+1))
@@ -64,7 +65,7 @@ class Dealer{
         return (card2)
         
     }
-    
+    //returns another card for dealer
     func getDealerCard() -> Int{
         var l :Int
         
@@ -77,7 +78,7 @@ class Dealer{
         return (card3)
         
     }
-    
+    //hit method
     func getHitCard () -> Int {
         var h :Int
         h =  Int(arc4random_uniform(UInt32(deck.count-1)) + 1)

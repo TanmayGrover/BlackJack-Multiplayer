@@ -28,12 +28,16 @@ class ViewController: UIViewController {
         if num == 0 {
         d.dealCard()
         d.shuffle()
+            gameStatus.text = "PRESS DEAL !"
         }
         else{
+         gameStatus.text = "Cannot shuffle before 5 rounds"
         println("You cannot shuffle before 5 rounds")
         }
         
     }
+    
+    
     
     @IBOutlet weak var moneyLabel: UILabel!
     @IBOutlet weak var turnLabel: UILabel!
@@ -49,6 +53,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        gameStatus.text = "ENTER BET AND PRESS SHUFFLE CARDS"
+        moneyLabel.text = "Money we have \(initialMoney)$"
         //initialPlayerCard()
     }
     
@@ -71,8 +77,10 @@ class ViewController: UIViewController {
     
     @IBAction func dealCards(sender: AnyObject) {
         num++
-        if num  >= 5 {
-            self.num = 0
+        
+        if num  > 5 {
+            self.num = 1
+            clear()
         }
         roundCount.text = "\(num)"
         
@@ -83,7 +91,7 @@ class ViewController: UIViewController {
         playerCard.text =  String(card1Value)+","+String(card2Value)
         //playerCard2.text =  String(card2Value)
     
-    moneyLabel.text = "Money we have \(initialMoney) "
+    moneyLabel.text = "Money we have \(initialMoney) $"
         
         cardTotal.text = "\(cardTotalValue)"
     
@@ -92,7 +100,7 @@ class ViewController: UIViewController {
         //dealerCard1.text = String(dcard1Value)
         dealerCard.text =  String(dcard1Value)+","
         foldCard.text = "Fold Card"
-        gameStatus.text = "Game Started"
+        gameStatus.text = "Game started. Do you wanna HIT/STAND ?"
         
     
     }
@@ -106,12 +114,22 @@ class ViewController: UIViewController {
         var hitCard = d.getHitCard()
         playerCard.text  = playerCard.text! + "," + String(hitCard)
         var  newTotal : Int
+        gameStatus.text = "Do you wanna HIT/STAND ?"
         cardTotalValue = cardTotalValue + hitCard
         cardTotal.text = "\(cardTotalValue)"
         if cardTotalValue > 21{
-            gameStatus.text = "YOU LOST !"
+            gameStatus.text = "YOU LOST. DO you wanna play again?"
             println("You LOST ! ")
-            
+         initialMoney = initialMoney - enteredBet.text.toInt()!
+            println("Initial money is \(initialMoney)$")
+            moneyLabel.text = "Money now we have \(initialMoney)$ "
+            if(initialMoney==0){
+                gameStatus.text = "Cannot play. You have no money"
+            }
+
+        }
+        else if cardTotalValue == 21 {
+            gameStatus.text = "YOU GOT BLACKJACK ! Press Stand"
         }
         
       
@@ -132,38 +150,72 @@ class ViewController: UIViewController {
     
        var dealersAnotherCard = d.getAnotherCard4Dealer()
        foldCard.text =  String(dealersAnotherCard)
+        
         var dealerCardsTotal = dcard1Value + dealersAnotherCard
         
         while( dealerCardsTotal <= 16){
             
             var oneMoreDealerCard = d.getAnotherCard4Dealer()
-            
+            foldCard.text = foldCard.text! + "," + String(oneMoreDealerCard)
             dealerCardsTotal = dealerCardsTotal + oneMoreDealerCard
         }
         
         
             
-        if dealerCardsTotal > 16 && dealerCardsTotal > cardTotalValue && dealerCardsTotal < 21 {
-            gameStatus.text = "Dealer Wins"
+        if dealerCardsTotal > 16 && dealerCardsTotal > cardTotalValue && dealerCardsTotal <= 21 {
+            
+            
+             initialMoney = initialMoney - enteredBet.text.toInt()!
+            
+            
+            
+            if(initialMoney==0){
+                gameStatus.text = "Cannot play. You have no money"
+            }
+            else{
+                gameStatus.text = "Dealer Wins. Do you wanna play again?"
+            }
+            moneyLabel.text = "Money now we have \(initialMoney)$ "
             
         }
         else if dealerCardsTotal > 21{
-            gameStatus.text = "Dealer Busted"
+            gameStatus.text = "Dealer Busted. YOU WON ! Do you wanna play again?"
+            var betValue = 0
+            betValue =  1 * enteredBet.text.toInt()!
+            initialMoney = initialMoney + betValue
+            moneyLabel.text = "Money we now have \(initialMoney)$ "
+
+        }
+        else if (dealerCardsTotal == 21 && cardTotalValue == 21) {
+            gameStatus.text = "PUSH..(GAME FINISHES )"
+            foldCard.text = foldCard.text
+            
+        }
+        else if (dealerCardsTotal > 16 && dealerCardsTotal == cardTotalValue ){
+            gameStatus.text = "PUSH..(GAME FINISHES )"
+            foldCard.text = foldCard.text
         }
         else{
-            gameStatus.text = "Player Wins "
+            var betValue = 0
+            betValue =  enteredBet.text.toInt()!
+            
+            initialMoney = 1 * initialMoney + betValue
+            gameStatus.text = "You Won. Do you wanna play again? "
+            moneyLabel.text = "Money we now have \(initialMoney)$ "
         }
         
         
-            
-        
-            
-            
-        
-            
-        
-    
     }
+    
+    
 
+    @IBAction func nextGame(sender: AnyObject) {
+        clear()
+        gameStatus.text = "New Game .Enter Bet and Press Deal !"
+    }
+    
+    
+   
+    
 
 }
