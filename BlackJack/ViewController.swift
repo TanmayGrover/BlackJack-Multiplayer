@@ -67,6 +67,7 @@ class ViewController: UIViewController {
     var card1Value = 0
     var card2Value = 0
     var cardTotalValue = 0
+    var dcard1Value = 0
     
     @IBAction func dealCards(sender: AnyObject) {
         num++
@@ -86,17 +87,18 @@ class ViewController: UIViewController {
         
         cardTotal.text = "\(cardTotalValue)"
     
-        var dcard1Value = d.getDealerCard()
+        dcard1Value = d.getDealerCard()
         println("d value is \(dcard1Value)")
         //dealerCard1.text = String(dcard1Value)
         dealerCard.text =  String(dcard1Value)+","
         foldCard.text = "Fold Card"
-        
+        gameStatus.text = "Game Started"
         
     
     }
     
     
+    @IBOutlet weak var gameStatus: UILabel!
 
     @IBAction func cardHit(sender: AnyObject) {
     
@@ -104,11 +106,12 @@ class ViewController: UIViewController {
         var hitCard = d.getHitCard()
         playerCard.text  = playerCard.text! + "," + String(hitCard)
         var  newTotal : Int
-        newTotal = cardTotalValue + hitCard
-        cardTotal.text = "\(newTotal)"
-        if newTotal > 21{
+        cardTotalValue = cardTotalValue + hitCard
+        cardTotal.text = "\(cardTotalValue)"
+        if cardTotalValue > 21{
+            gameStatus.text = "YOU LOST !"
             println("You LOST ! ")
-            clear()
+            
         }
         
       
@@ -129,6 +132,36 @@ class ViewController: UIViewController {
     
        var dealersAnotherCard = d.getAnotherCard4Dealer()
        foldCard.text =  String(dealersAnotherCard)
+        var dealerCardsTotal = dcard1Value + dealersAnotherCard
+        
+        while( dealerCardsTotal <= 16){
+            
+            var oneMoreDealerCard = d.getAnotherCard4Dealer()
+            
+            dealerCardsTotal = dealerCardsTotal + oneMoreDealerCard
+        }
+        
+        
+            
+        if dealerCardsTotal > 16 && dealerCardsTotal > cardTotalValue && dealerCardsTotal < 21 {
+            gameStatus.text = "Dealer Wins"
+            
+        }
+        else if dealerCardsTotal > 21{
+            gameStatus.text = "Dealer Busted"
+        }
+        else{
+            gameStatus.text = "Player Wins "
+        }
+        
+        
+            
+        
+            
+            
+        
+            
+        
     
     }
 

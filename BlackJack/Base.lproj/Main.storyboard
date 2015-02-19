@@ -113,8 +113,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4zP-MO-3mO">
-                                <rect key="frame" x="77" y="284" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <rect key="frame" x="59" y="284" width="60" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -129,6 +129,18 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jWk-qk-Xuc">
+                                <rect key="frame" x="123" y="187" width="112" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game Status:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n83-uR-NtJ">
+                                <rect key="frame" x="16" y="183" width="85" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -137,6 +149,7 @@
                         <outlet property="dealerCard" destination="Nj7-QW-PiY" id="w6d-HA-xKu"/>
                         <outlet property="enteredBet" destination="8lu-gw-VPy" id="7PR-eI-tGZ"/>
                         <outlet property="foldCard" destination="4zP-MO-3mO" id="HGp-O4-tPc"/>
+                        <outlet property="gameStatus" destination="jWk-qk-Xuc" id="9lC-pn-zCR"/>
                         <outlet property="moneyLabel" destination="bYa-go-AAD" id="Q8F-Ld-izV"/>
                         <outlet property="playerCard" destination="eUU-ae-t01" id="o8M-jJ-Kz7"/>
                         <outlet property="playerCard2" destination="GaO-5O-SRE" id="u4Z-zB-70X"/>
