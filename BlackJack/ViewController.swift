@@ -19,20 +19,29 @@ class ViewController: UIViewController {
     @IBOutlet weak var cardTotal: UILabel!
     @IBOutlet weak var playerCard2: UILabel!
     
+   
+    
     let logic = Logic()
     var d = Dealer()
     var num=0
     var initialMoney = 100
+    var shuffleFlag = 0
     
     @IBAction func deckCreate(sender: AnyObject) {
+        shuffleFlag = 1
         if num == 0 {
         d.dealCard()
         d.shuffle()
+            if( enteredBet.text == ""){
+                gameStatus.text = "Enter BET MIN 1$. Press Deal"
+            }
+            else{
             gameStatus.text = "PRESS DEAL !"
+            }
         }
         else{
          gameStatus.text = "Cannot shuffle before 5 rounds"
-        println("You cannot shuffle before 5 rounds")
+        
         }
         
     }
@@ -74,15 +83,24 @@ class ViewController: UIViewController {
     var card2Value = 0
     var cardTotalValue = 0
     var dcard1Value = 0
-    
+    var dealFlag = 0
+    var dealPressed = 0
+    var playAgainFlag = 0
     @IBAction func dealCards(sender: AnyObject) {
+        if shuffleFlag != 0 && enteredBet.text != ""  && enteredBet.text.toInt() != 0 {
+            dealFlag = 1
         num++
         
+        
         if num  > 5 {
-            self.num = 1
+            self.num = 0
             clear()
         }
-        roundCount.text = "\(num)"
+        
+                
+            
+            roundCount.text = "\(num)"
+            
         
         card1Value = d.getCard1Player()
          card2Value = d.getCard2Player()
@@ -102,15 +120,28 @@ class ViewController: UIViewController {
         foldCard.text = "Fold Card"
         gameStatus.text = "Game started. Do you wanna HIT/STAND ?"
         
-    
+        }
+        else if(shuffleFlag != 1){
+            gameStatus.text = "You need to shuffle for 1st game."
+        }
+        else if (enteredBet.text.toInt() == 0) || (enteredBet.text == "" ){
+            gameStatus.text = "ENTER BET MIN 1$. Press Deal"
+        }
+        else{
+         gameStatus.text = " To start 1st game shuffle & enter bet min 1$"
+            }
+        
     }
     
     
     @IBOutlet weak var gameStatus: UILabel!
+    
+    var hitFlag = 0
 
     @IBAction func cardHit(sender: AnyObject) {
-    
-        
+       
+        if(dealFlag == 1){
+            hitFlag = 1
         var hitCard = d.getHitCard()
         playerCard.text  = playerCard.text! + "," + String(hitCard)
         var  newTotal : Int
@@ -118,6 +149,7 @@ class ViewController: UIViewController {
         cardTotalValue = cardTotalValue + hitCard
         cardTotal.text = "\(cardTotalValue)"
         if cardTotalValue > 21{
+            dealFlag = 0
             gameStatus.text = "YOU LOST. DO you wanna play again?"
             println("You LOST ! ")
          initialMoney = initialMoney - enteredBet.text.toInt()!
@@ -130,13 +162,17 @@ class ViewController: UIViewController {
         }
         else if cardTotalValue == 21 {
             gameStatus.text = "YOU GOT BLACKJACK ! Press Stand"
+            }
+        }
+        else{
+            gameStatus.text = "You need to press Deal First."
         }
         
       
     }
     
     func clear () {
-        enteredBet.text = "0"
+        enteredBet.text = ""
         playerCard.text = "0"
          cardTotal.text = "0"
         dealerCard.text = "0"
@@ -148,6 +184,7 @@ class ViewController: UIViewController {
     
     @IBAction func playerStands(sender: AnyObject) {
     
+        if (dealFlag == 1){
        var dealersAnotherCard = d.getAnotherCard4Dealer()
        foldCard.text =  String(dealersAnotherCard)
         
@@ -179,7 +216,7 @@ class ViewController: UIViewController {
             
         }
         else if dealerCardsTotal > 21{
-            gameStatus.text = "Dealer Busted. YOU WON ! Do you wanna play again?"
+            gameStatus.text = "YOU WON.Do you wanna play again?"
             var betValue = 0
             betValue =  1 * enteredBet.text.toInt()!
             initialMoney = initialMoney + betValue
@@ -187,12 +224,12 @@ class ViewController: UIViewController {
 
         }
         else if (dealerCardsTotal == 21 && cardTotalValue == 21) {
-            gameStatus.text = "PUSH..(GAME FINISHES )"
+            gameStatus.text = "Push!, Game Finished. Do you wanna play again."
             foldCard.text = foldCard.text
             
         }
         else if (dealerCardsTotal > 16 && dealerCardsTotal == cardTotalValue ){
-            gameStatus.text = "PUSH..(GAME FINISHES )"
+            gameStatus.text = "Push!, Game Finished. Do you wanna play again."
             foldCard.text = foldCard.text
         }
         else{
@@ -203,16 +240,26 @@ class ViewController: UIViewController {
             gameStatus.text = "You Won. Do you wanna play again? "
             moneyLabel.text = "Money we now have \(initialMoney)$ "
         }
+    }
         
-        
+        else{
+            gameStatus.text = "Dealer cannot draw before Player"
+        }
     }
     
     
 
     @IBAction func nextGame(sender: AnyObject) {
+        if(roundCount.text?.toInt() > 0){
+            playAgainFlag = 1
         clear()
         gameStatus.text = "New Game .Enter Bet and Press Deal !"
-    }
+    
+        }
+        else{
+            gameStatus.text = "You have to play 1 game first."
+        }
+        }
     
     
    
