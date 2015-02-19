@@ -36,7 +36,7 @@ class ViewController: UIViewController {
                 gameStatus.text = "Enter BET MIN 1$. Press Deal"
             }
             else{
-            gameStatus.text = "PRESS DEAL !"
+            gameStatus.text = "PRESS DEAL!"
             }
         }
         else{
