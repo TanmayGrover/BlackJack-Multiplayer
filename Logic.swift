@@ -12,7 +12,7 @@ class Logic {
     //var deck = Deck()
     
     //var player = Player()
-    var dealer = Dealer()
+    //var dealer = Dealer()
     
     func initialPlayerCard() {
         //

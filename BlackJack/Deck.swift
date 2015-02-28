@@ -9,19 +9,22 @@
 import Foundation
 
 
-class Dealer{
+class Deck{
     var deck = [Int]()
     
+    var deckCount = 3
     //returns dealer card
-    func dealCard () {
-        for index in 0...3{
-            for item in 1...13{
-                //Putting deck with card values . 
-                if item > 10 {
-                    deck.append(10)
-                }else{
-                    deck.append(item)
-
+    func dealCard ( c : Int) {
+        for i in 1...c{
+            for index in 0...3{
+                for item in 1...13{
+                    //Putting deck with card values .
+                    if item > 10 {
+                        deck.append(10)
+                    }else{
+                        deck.append(item)
+                        
+                    }
                 }
             }
         }
@@ -46,7 +49,7 @@ class Dealer{
         
         
         j =  Int(arc4random_uniform(UInt32(deck.count-1)) + 1)
-               //println(j)
+        //println(j)
         var card  = deck[j]
         println(" card is \(card)")
         

@@ -10,6 +10,8 @@
 	<string>BlackJack</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>7A356D89ADFFC345ABF687F6259D7A5C97D352AA</key>
+		<string>https://github.com/TanmayGrover/BlackJackMultiplayer.git</string>
 		<key>A5D0FFF33E881D8F8139E348C96D77584F90829A</key>
 		<string>https://github.com/TanmayGrover/cs-394-9033-iOS-HW.git</string>
 	</dict>
@@ -17,6 +19,8 @@
 	<string>BlackJack.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>7A356D89ADFFC345ABF687F6259D7A5C97D352AA</key>
+		<string>../../..</string>
 		<key>A5D0FFF33E881D8F8139E348C96D77584F90829A</key>
 		<string>../..</string>
 	</dict>
@@ -28,6 +32,14 @@
 	<string>A5D0FFF33E881D8F8139E348C96D77584F90829A</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7A356D89ADFFC345ABF687F6259D7A5C97D352AA</string>
+			<key>IDESourceControlWCCName</key>
+			<string></string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
