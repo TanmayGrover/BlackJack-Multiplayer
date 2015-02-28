@@ -193,6 +193,7 @@ class ViewController: UIViewController {
                     dealFlag = 0
                     gameStatus.text = "P1 LOST. Press Stand for P2's chance?"
                     println("You LOST ! ")
+                    player1win = 0
                     initialMoney = initialMoney - enteredBet.text.toInt()!
                     println("Initial money is \(initialMoney)$")
                     moneyLabel.text = "Money now we have \(initialMoney)$ "
@@ -261,6 +262,8 @@ class ViewController: UIViewController {
         dealerCardTotalLabel.text = "0"
         enteredBetPlayer2.text = ""
         Player2Card.text = "0"
+        player1win = 1
+        player2win = 1
         
     }
     
@@ -287,7 +290,7 @@ class ViewController: UIViewController {
                 }
                 dealerCardTotalLabel.text = "\(dealerCardsTotal)"
                 
-                if (dealerCardsTotal > 21 && player2win != 0){
+                if (dealerCardsTotal > 21 && player2win != 0 && player1win != 0 ){
                     gameStatus.text = "Players WON.Do you wanna play again?"
                     var betValue = 0
                     betValue =  1 * enteredBet.text.toInt()!
