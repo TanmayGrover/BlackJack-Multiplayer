@@ -1,7 +1,10 @@
 # cs-394-9033-iOS-HW
 Application Done !
 
-1) To play the game, follow the "GAME STATUS" Highlighted in middle of the screen. Game status and money status are highlighted in RED.
+Default to two players game ....!
+
+1) To play the game, follow the "GAME STATUS" Highlighted in TOP of the screen. Game status and money status are highlighted in RED.
+
 
 2) There are 5 buttons :- 
     a)  Shuffle cards :- For initial shuffle and and then after 5 rounds.
