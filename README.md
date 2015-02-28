@@ -12,6 +12,6 @@ Application Done !
 
 3) There are labels to display the Entities and text field to enter the BET amount.
 
-4) ACE is considered as 1 for this first deliverable.
+
 
 
